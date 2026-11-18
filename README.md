@@ -1,45 +1,72 @@
-# Wayfare — Bike, Auto & Car Future Ride Forecasting
+# Aether Noir — Four Independent Full-Stack Websites
 
-**Aether Noir Project 03: an independent runnable local full-stack site.** Dark responsive frontend, FastAPI backend, SQLite persistence, OSRM road routing, Open-Meteo weather, opt-in TomTom present-time traffic, ten-minute predeparture activation, actual-fare ML training pipeline, and automated tests.
+**Real, navigable source files—not a `.tar`, `.base64` archive or download-only repository.**
 
-## Complete source code
+This GitHub repository is currently named `bike-ride-prediction` because it is the existing writable repository connected to the account. Its contents are a **four-project monorepo**. Every project has its own runnable frontend (`web/`), FastAPI backend (`server/`), local data directory, scripts, tests, Dockerfile, and a detailed README.
 
-The complete tested codebase is included under [`source/wayfare-complete-source.tar.xz.base64`](source/wayfare-complete-source.tar.xz.base64). This GitHub connector publishes text files; this source package is therefore stored as a base64-encoded XZ-compressed TAR archive. The ordinary ready-to-extract ZIP is also available in the ChatGPT conversation.
+## Open each project
 
-To restore it on **Linux/macOS** from a cloned repository:
+| Folder | Site and purpose | Local URL | Verified reality |
+|---|---|---|---|
+| [01-medicinal-plants](./01-medicinal-plants/) | **Verdant Atlas:** dark medicinal plant e-commerce | http://localhost:8001 | Searchable products, demo cart/orders, seller-approval workflow; **no verified live sellers/payments** |
+| [02-crop-yield](./02-crop-yield/) | **TerraPulse:** satellite/weather crop analysis | http://localhost:8002 | Weather and scene-search API adapters; **yield model requires harvest labels** |
+| [03-ride-forecast](./03-ride-forecast/) | **Wayfare:** bike, auto and car planning | http://localhost:8003 | Routing, weather, seven-day planning; **no real Uber/Ola/Rapido quotes or booking** |
+| [04-neural-translation](./04-neural-translation/) | **LingoAtlas:** Hindi/Telugu/Korean/English NMT | http://localhost:8004 | Translator UI and local model adapter; **no downloaded/licensed checkpoint** |
+
+## GitHub source tree
+
+```text
+.
+├── 01-medicinal-plants/
+│   ├── server/        # Python API, search, commerce, local DB
+│   ├── web/           # E-commerce HTML, CSS, JS, SVG logo
+│   ├── docs/          # Botanical sourcing and commerce documentation
+│   ├── scripts/       # Real Wikimedia image retrieval helper
+│   ├── tests/         # API, account, basket, seller test suites
+│   ├── Dockerfile
+│   └── README.md
+├── 02-crop-yield/
+│   ├── server/  web/  scripts/  tests/  Dockerfile  README.md
+├── 03-ride-forecast/
+│   ├── server/  web/  scripts/  tests/  Dockerfile  README.md
+├── 04-neural-translation/
+│   ├── server/  web/  scripts/  tests/  Dockerfile  README.md
+├── .github/workflows/verify-projects.yml
+├── scripts/verify_all.py
+├── compose.yaml
+└── README.md
+```
+
+## Run all projects locally
+
+Requires Python 3.12, or Docker Compose.
 
 ```bash
-base64 --decode source/wayfare-complete-source.tar.xz.base64 > wayfare.tar.xz
-tar -xJf wayfare.tar.xz
-cd Aether_Project_03_Ride_Forecast
-pip install -r requirements.txt
-PYTHONPATH=. pytest -q
-node --check web/assets/app.js
+docker compose up --build
+```
+
+Alternatively, open a project's folder and run:
+
+```bash
+python -m pip install -r requirements.txt
 uvicorn server.app:app --reload --port 8003
 ```
 
-On **Windows PowerShell**:
+Use the respective project port in the table. The backend serves the **real frontend and API from the same origin**. Interactive API docs are available at `/docs`.
 
-```powershell
-$encoded = (Get-Content source/wayfare-complete-source.tar.xz.base64 -Raw) -replace '\s',''
-[IO.File]::WriteAllBytes("wayfare.tar.xz", [Convert]::FromBase64String($encoded))
-tar -xJf wayfare.tar.xz
-cd Aether_Project_03_Ride_Forecast
-pip install -r requirements.txt
-python -m pytest -q
-uvicorn server.app:app --reload --port 8003
+## Verify backend and frontend integration
+
+```bash
+python scripts/verify_all.py
 ```
 
-Open `http://localhost:8003`. API reference is `http://localhost:8003/docs`.
+Runs each project's API test suite, JavaScript syntax validation, and a smoke test that its HTML, CSS, JavaScript and health API can be served together.
 
-## Accuracy and restrictions
+## Production scope: actual vs blocked
 
-- **6 local backend tests passed**, JS syntax validated; no verified real provider integration test.
-- **No actual Uber, Ola or Rapido quote or booking is enabled.** Partner access is required.
-- The ten-minute activation is an internal plan-status window, **not a scheduled price lock**.
-- Fare predictions are disabled until legitimate historical settled-fare data is provided and the model is trained with a time-based holdout.
-- Public OSRM demo server is for development and does not provide traffic-aware routes.
-- No secret tokens, model weights, customer payment data, or external service credentials are included.
-- No cloud database, commercial hosting, or paid service is active.
+- **Implemented and locally verified:** FastAPI/JS integration, automated tests, local SQLite storage, shopping and demo-order workflows, model adapter contracts and explicit unavailable states.
+- **Needs external data/accounts:** verified plant nurseries and inventory, live payment/shipping, crop and ride training datasets, authorized ride provider APIs, licensed neural checkpoints.
+- **Not provisioned:** cloud database, production deployment, charged payments, live ride booking. No credentials are committed.
+- **Real botanical photographs:** externally credited Commons photos linked via their source URLs. They are not generated artwork. External image download and license compliance must be checked before republishing.
 
-See the restored project's README for full data requirements, provenance, evaluation, endpoints and disclaimers.
+This is **functional local source with honest provider status**, not a claim that third-party networks and production ML models have been connected.

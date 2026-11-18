@@ -1,0 +1,18 @@
+# Development only; no paid cloud resources are created.
+services:
+  medicinal-store:
+    build: ./01-medicinal-plants
+    ports: ["8001:8000"]
+    volumes: ["./01-medicinal-plants/data:/app/data"]
+  crop-yield:
+    build: ./02-crop-yield
+    ports: ["8002:8000"]
+    volumes: ["./02-crop-yield/data:/app/data"]
+  ride-forecast:
+    build: ./03-ride-forecast
+    ports: ["8003:8000"]
+    volumes: ["./03-ride-forecast/data:/app/data"]
+  neural-translation:
+    build: ./04-neural-translation
+    ports: ["8004:8000"]
+    volumes: ["./04-neural-translation/data:/app/data"]
