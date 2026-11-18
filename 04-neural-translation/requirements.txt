@@ -1,0 +1,6 @@
+fastapi>=0.116,<1
+uvicorn>=0.34,<1
+pydantic>=2.8,<3
+pytest>=8,<10
+httpx>=0.27,<1
+# For actual locally installed neural checkpoints, install requirements-ml.txt.

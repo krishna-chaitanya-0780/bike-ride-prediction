@@ -1,0 +1,16 @@
+__pycache__/
+.pytest_cache/
+*.py[cod]
+.env
+.env.*
+!.env.example
+*.sqlite3
+*.db
+*.safetensors
+*.bin
+*.pt
+*.pth
+*.ckpt
+model_weights/
+node_modules/
+.DS_Store
