@@ -1,0 +1,14 @@
+__pycache__/
+.pytest_cache/
+*.py[cod]
+.env
+.env.*
+!.env.example
+*.sqlite3
+*.db
+*.joblib
+*.pkl
+*.pt
+*.safetensors
+node_modules/
+.DS_Store
